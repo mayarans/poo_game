@@ -3,6 +3,7 @@
 
 #include "ASCII_Engine/ObjetoDeJogo.hpp"
 #include "Shot.hpp"
+#include "Spaceship.hpp"
 #include <list>
 
 class ShotController : public ObjetoDeJogo {
@@ -13,11 +14,11 @@ public:
 
     void update();
 
-    void createShot(int posL, int posC, int velShot, int dir);
+    void createShot(int posL, int posC, int velShot, int dir, int intensidade = 10);
 
     void ativarObj();
 
-    bool verificaColisao(const std::list<ObjetoDeJogo*> objs);
+    int verificaColisao(const std::list<ObjetoDeJogo*> objs);
 
     void draw(SpriteBase &screen, unsigned x, unsigned y);
 

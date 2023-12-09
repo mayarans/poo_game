@@ -19,8 +19,8 @@ void ShotController::update() {
     }
 }
 
-void ShotController::createShot(int posL, int posC, int velShot, int dir) {
-    newShot = new Shot(ObjetoDeJogo("Shot", Sprite("rsc_2/shot.img"), posL, posC), velShot, dir);
+void ShotController::createShot(int posL, int posC, int velShot, int dir, int intensidade) {
+    newShot = new Shot(ObjetoDeJogo("Shot", Sprite("rsc_2/shot.img"), posL, posC), velShot, dir, intensidade);
     newShot->ativarObj();
     shots.push_back(newShot);
 }
@@ -29,18 +29,23 @@ void ShotController::ativarObj() {
    newShot->ativarObj();
 }
 
-bool ShotController::verificaColisao(const std::list<ObjetoDeJogo*> objs) {
+int ShotController::verificaColisao(const std::list<ObjetoDeJogo*> objs) {
     for (auto obj : objs) {
         for (auto shot : shots) {
-            if (shot->colideCom(*obj) && (obj->getName() == "Alien" || obj->getName() == "Jellyfish" || obj->getName() == "SpaceshipEnemy")) {
+            if (shot->getDir() != 1 && (shot->colideCom(*obj) && obj->getName() == "Spaceship")) {
+                shot->desativarObj();
+                Spaceship *spaceship = dynamic_cast<Spaceship *> (obj);
+                spaceship->sofrerAtaque(shot->getIntensidade());
+                return 0;
+            } else if (shot->getDir() == 1 && (shot->colideCom(*obj) && (obj->getName() == "Alien" || obj->getName() == "Jellyfish" || obj->getName() == "SpaceshipEnemy"))) {
                 shot->desativarObj();
                 obj->desativarObj();
-                return true;
+                return 1;
             }
         }
 
     }
-    return false;
+    return 2;
 }
 
 void ShotController::draw(SpriteBase &screen, unsigned x, unsigned y) {
