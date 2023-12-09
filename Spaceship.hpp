@@ -5,7 +5,10 @@
 
 class Spaceship : public ObjetoDeJogo {
 public:
-    Spaceship(const ObjetoDeJogo &obj, int quantShots, int velShot, int life = 100) : quantShots(quantShots), velShot(velShot), life(life), ObjetoDeJogo(obj) {}
+    Spaceship(const ObjetoDeJogo &obj, int totalShots, int velShot, int life = 100) : quantShots(0),
+                                                                                      totalShots(totalShots),
+                                                                                      velShot(velShot), life(life),
+                                                                                      ObjetoDeJogo(obj) {}
 
 
     virtual ~Spaceship() {}
@@ -20,19 +23,26 @@ public:
 
     int getQuantShots() const { return quantShots; }
 
-    void setQuantShots(int num) { quantShots = num; }
-
     int getVelShot() const { return velShot; }
 
     void setVelShot(int num) { velShot = num; }
 
-    void decrementQuantShots() { quantShots--; }
+    void incrementQuantShots() { quantShots++; }
+
+    void recebeItemShot() { totalShots++; }
+
+    void recebeItemLife() { life += 10; }
+
+    void recebeItemNocivo() { life -= 10; }
+
+    int getTotalShots() const { return totalShots; }
 
 
 private:
     int life;
     int quantShots;
     int velShot;
+    int totalShots;
 };
 
 #endif // SPACESHIP_HPP
