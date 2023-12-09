@@ -7,6 +7,8 @@ enum class EnemyState {
     Idle,
     MovingLeft,
     MovingRight,
+    MovingFront,
+    MovingBack,
 };
 
 class Enemy : public ObjetoDeJogo

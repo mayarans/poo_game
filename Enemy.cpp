@@ -9,11 +9,7 @@ void Enemy::sofrerAtaque(int ataque) {
 }
 
 int Enemy::atacar() {
-    if (--contAtaque == 0) {
-        contAtaque = velAtaque;
-        return 10;
-    }
-    return 0;
+    return 10;
 }
 
 void Enemy::update() {
