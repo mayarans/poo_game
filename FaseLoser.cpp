@@ -1,13 +1,13 @@
-#include "FaseFinal.hpp"
+#include "FaseLoser.hpp"
 
-void FaseFinal::init()
+void FaseLoser::init()
 {
-    spaceship = new ObjetoDeJogo("SpaceshipWinner", SpriteAnimado("rsc_2/spaceshipWinner.anm"), 55, 80);
+    spaceship = new ObjetoDeJogo("SpaceshipExplosion", SpriteAnimado("rsc_2/explosion.anm"), 30, 30);
 
 	objs.push_back(spaceship);
 }
 
-unsigned FaseFinal::run(SpriteBuffer &screen)
+unsigned FaseLoser::run(SpriteBuffer &screen)
 {
 	std::string ent;
 	
@@ -24,8 +24,6 @@ unsigned FaseFinal::run(SpriteBuffer &screen)
 		if (ent == "q")
 			return Fase::END_GAME;
 
-        spaceship->moveUp(1);
-        screen.clear();
 
 
         //padrão
