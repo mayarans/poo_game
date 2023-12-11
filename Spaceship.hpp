@@ -33,7 +33,7 @@ public:
 
     void recebeItemLife() { life += 10; }
 
-    void recebeItemNocivo() { life -= 10; }
+    void recebeItemNocivo(int valor) { life -= valor; }
 
     int getTotalShots() const { return totalShots; }
 
