@@ -30,7 +30,7 @@ void SpaceshipEnemy::update() {
             break;
         case EnemyState::MovingFront:
             moveDown(2);
-            if (getPosL() >= 40) {
+            if (getPosL() == 36) {
                 setState(EnemyState::MovingBack);
             }
             break;
