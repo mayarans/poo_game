@@ -1,7 +1,7 @@
 #include "FaseStart.hpp"
 
 void FaseStart::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 100, 1);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 30, 1);
     objs.push_back(spaceship);
 
     countEnemy = 0;
@@ -19,7 +19,7 @@ void FaseStart::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/100"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/30"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 

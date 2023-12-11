@@ -28,9 +28,9 @@ public:
 private:
     Spaceship *spaceship;
     Shot *shot[10];
-    Alien *alien[4];
-    Enemy *jellyfish[3];
-    SpaceshipEnemy *spaceshipEnemy[2];
+    Alien *alien[12];
+    Enemy *jellyfish[10];
+    SpaceshipEnemy *spaceshipEnemy[3];
     TextSprite *life, *shots;
     ShotController *controller;
     ItemController *itemController;

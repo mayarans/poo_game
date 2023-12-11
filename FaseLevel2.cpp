@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 void FaseLevel2::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 100, 1);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 40, 1);
     objs.push_back(spaceship);
 
     countEnemy = 0;
@@ -25,7 +25,7 @@ void FaseLevel2::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/100"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/40"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
@@ -99,7 +99,7 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
             spaceship->recebeItemLife();
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 1) {
-            spaceship->recebeItemNocivo();
+            spaceship->recebeItemNocivo(10);
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 2) {
             spaceship->recebeItemShot();

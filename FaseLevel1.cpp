@@ -3,19 +3,19 @@
 #include <cstdlib>
 
 void FaseLevel1::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 20, 1);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 40, 1);
     objs.push_back(spaceship);
 
     countEnemy = 0;
     int pos = 0;
-    for (int i = 70; i < 101; i+=10) {
+    for (int i = 0; i < 91; i+=10) {
         countEnemy += 1;
         alien[pos] = new Alien (ObjetoDeJogo("Alien", Sprite("rsc_2/alien.img"), 0, i));
         objs.push_back(alien[pos++]);
     }
 
     pos = 0;
-    for (int i = 80; i < 101; i+=10) {
+    for (int i = 40; i < 111; i+=10) {
         countEnemy += 1;
         jellyfish[pos] = new Jellyfish (ObjetoDeJogo("Jellyfish", Sprite("rsc_2/jellyfish.img"), 8, i));
         objs.push_back(jellyfish[pos++]);
@@ -25,7 +25,7 @@ void FaseLevel1::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/20"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/40"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 

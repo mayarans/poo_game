@@ -3,26 +3,26 @@
 #include <cstdlib>
 
 void FaseLevel3::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 40, 1);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 50, 1);
     objs.push_back(spaceship);
 
     countEnemy = 0;
     int pos = 0;
-    for (int i = 70; i < 101; i += 10) {
+    for (int i = 0; i < 111; i += 10) {
         countEnemy += 1;
         alien[pos] = new Alien(ObjetoDeJogo("Alien", Sprite("rsc_2/alien.img"), 0, i));
         objs.push_back(alien[pos++]);
     }
 
     pos = 0;
-    for (int i = 80; i < 101; i += 10) {
+    for (int i = 20; i < 111; i += 10) {
         countEnemy += 1;
         jellyfish[pos] = new Jellyfish(ObjetoDeJogo("Jellyfish", Sprite("rsc_2/jellyfish.img"), 8, i));
         objs.push_back(jellyfish[pos++]);
     }
 
     pos = 0;
-    for (int i = 0; i < 71; i += 70) {
+    for (int i = 0; i < 121; i += 70) {
         countEnemy += 1;
         spaceshipEnemy[pos] = new SpaceshipEnemy(ObjetoDeJogo("SpaceshipEnemy", Sprite("rsc_2/spaceshipEnemy.img"), 12, i));
         objs.push_back(spaceshipEnemy[pos++]);
@@ -32,7 +32,7 @@ void FaseLevel3::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/40"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/50"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
@@ -107,11 +107,19 @@ unsigned FaseLevel3::run(SpriteBuffer &screen) {
             spaceship->recebeItemLife();
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 1) {
-            spaceship->recebeItemNocivo();
+            spaceship->recebeItemNocivo(10);
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 2) {
             spaceship->recebeItemShot();
             shots->setText(std::to_string(spaceship->getQuantShots()) + "/" + std::to_string(spaceship->getTotalShots()));
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (spaceshipEnemy[i]->isActive() && spaceshipEnemy[i]->colideCom(*spaceship)) {
+                spaceship->recebeItemNocivo(20);
+                life->setText(std::string(spaceship->getLife() / 10, '#'));
+
+            }
         }
 
         update();
