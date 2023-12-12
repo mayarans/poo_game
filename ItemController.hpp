@@ -15,9 +15,7 @@ public:
 
     void update();
 
-    void createItem(int posL, int posC, int velItem, int tipo);
-
-    void ativarObj();
+    void createItem(int posL, int posC, int tipo);
 
     int verificaColisao(const Spaceship &spaceship);
 
@@ -27,7 +25,6 @@ public:
 private:
     std::list<Item*> itens;
     Item *newItem;
-
 };
 
 #endif

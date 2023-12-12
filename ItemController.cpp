@@ -15,7 +15,14 @@ void ItemController::update() {
     }
 }
 
-void ItemController::createItem(int posL, int posC, int velItem, int tipo) {
+void ItemController::createItem(int posL, int posC, int tipo) {
+    if (tipo < 8) {
+        tipo = 1;
+    } else if (tipo == 8) {
+        tipo = 0;
+    } else {
+        tipo = 2;
+    }
     switch (tipo) {
         case 0:
             newItem = new Item(ObjetoDeJogo("Item", Sprite("rsc_2/life.img"), posL + 3, posC),
@@ -23,7 +30,7 @@ void ItemController::createItem(int posL, int posC, int velItem, int tipo) {
             break;
         case 1:
             newItem = new Item(ObjetoDeJogo("Item", Sprite("rsc_2/bomb.img"), posL + 3, posC),
-                            "bomba");
+                               "bomba");
             break;
         case 2:
             newItem = new Item(ObjetoDeJogo("Item", Sprite("rsc_2/spaceshipEnemy.img"), posL + 3, posC),
@@ -32,10 +39,6 @@ void ItemController::createItem(int posL, int posC, int velItem, int tipo) {
     }
     newItem->ativarObj();
     itens.push_back(newItem);
-}
-
-void ItemController::ativarObj() {
-   newItem->ativarObj();
 }
 
 int ItemController::verificaColisao(const Spaceship &spaceship) {

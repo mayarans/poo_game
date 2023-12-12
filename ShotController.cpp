@@ -25,10 +25,6 @@ void ShotController::createShot(int posL, int posC, int velShot, int dir, int in
     shots.push_back(newShot);
 }
 
-void ShotController::ativarObj() {
-   newShot->ativarObj();
-}
-
 int ShotController::verificaColisao(const std::list<ObjetoDeJogo*> objs) {
     for (auto obj : objs) {
         for (auto shot : shots) {
@@ -41,6 +37,10 @@ int ShotController::verificaColisao(const std::list<ObjetoDeJogo*> objs) {
                 shot->desativarObj();
                 obj->desativarObj();
                 return 1;
+            } else if (shot->getDir() == 1 && (shot->colideCom(*obj) && obj->getName() == "Barreira")) {
+                shot->desativarObj();
+                obj->desativarObj();
+                return 2;
             }
         }
 

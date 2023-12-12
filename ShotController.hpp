@@ -16,12 +16,9 @@ public:
 
     void createShot(int posL, int posC, int velShot, int dir, int intensidade = 10);
 
-    void ativarObj();
-
     int verificaColisao(const std::list<ObjetoDeJogo*> objs);
 
     void draw(SpriteBase &screen, unsigned x, unsigned y);
-
 
 private:
     std::list<Shot*> shots;
