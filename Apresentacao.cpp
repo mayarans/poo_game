@@ -1,8 +1,10 @@
 #include "Apresentacao.hpp"
+#include "ASCII_Engine/Sound.hpp"
+#include <thread>
 
 void Apresentacao::init()
 {
-    carta = new ObjetoDeJogo("Carta", Sprite("rsc_2/carta.img"), 13, 50);
+    carta = new ObjetoDeJogo("Carta", Sprite("rsc_2/carta.img"), 13, 30);
     objs.push_back(carta);
 
     objs.push_back(new ObjetoDeJogo("Carregamento", TextSprite("#"), 49, 50));
@@ -34,9 +36,7 @@ unsigned Apresentacao::run(SpriteBuffer &screen) {
         draw(screen);
         system("clear");
 
-        if (contagem == 100)
-            return Fase::LEVEL_COMPLETE;
-
         show(screen);
     }
+    return Fase::LEVEL_COMPLETE;
 }
