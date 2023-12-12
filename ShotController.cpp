@@ -20,7 +20,13 @@ void ShotController::update() {
 }
 
 void ShotController::createShot(int posL, int posC, int velShot, int dir, int intensidade) {
-    newShot = new Shot(ObjetoDeJogo("Shot", Sprite("rsc_2/shot.img"), posL, posC), velShot, dir, intensidade);
+    std::string sprite;
+    if (dir == 1) {
+        sprite = "rsc_2/shot.img";
+    } else {
+        sprite = "rsc_2/shotEnemy.img";
+    }
+    newShot = new Shot(ObjetoDeJogo("Shot", Sprite(sprite), posL, posC), velShot, dir, intensidade);
     newShot->ativarObj();
     shots.push_back(newShot);
 }
