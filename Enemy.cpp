@@ -1,16 +1,6 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(const ObjetoDeJogo &obj, int life, int velAtaque) : state(EnemyState::Idle), ObjetoDeJogo(obj), life(life), velAtaque(velAtaque), contAtaque(velAtaque) {}
-
-bool Enemy::isAlive() const { return life != 0; }
-
-void Enemy::sofrerAtaque(int ataque) {
-    life = (life - ataque >= 0)?(life - ataque):0;
-}
-
-int Enemy::atacar() {
-    return 10;
-}
+Enemy::Enemy(const ObjetoDeJogo &obj) : state(EnemyState::Idle), ObjetoDeJogo(obj) {}
 
 void Enemy::update() {
     switch (state) {

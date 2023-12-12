@@ -6,7 +6,7 @@
 class SpaceshipEnemy : public Enemy
 {
 public:
-	SpaceshipEnemy(const ObjetoDeJogo &obj, int life=30, int velAtaque=3);
+	SpaceshipEnemy(const ObjetoDeJogo &obj);
 	
 	virtual ~SpaceshipEnemy(){}
 	
@@ -14,4 +14,4 @@ public:
 
 };
 
-#endif // ENEMY_HPP
+#endif

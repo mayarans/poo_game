@@ -1,6 +1,6 @@
 #include "SpaceshipEnemy.hpp"
 
-SpaceshipEnemy::SpaceshipEnemy(const ObjetoDeJogo &obj, int life, int velAtaque) : Enemy(obj, life, velAtaque) {}
+SpaceshipEnemy::SpaceshipEnemy(const ObjetoDeJogo &obj) : Enemy(obj) {}
 
 void SpaceshipEnemy::update() {
     switch (getState()) {

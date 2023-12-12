@@ -1,6 +1,6 @@
 #include "Alien.hpp"
 
-Alien::Alien(const ObjetoDeJogo &obj, int life, int velAtaque) : Enemy(obj, life, velAtaque) {}
+Alien::Alien(const ObjetoDeJogo &obj) : Enemy(obj) {}
 
 void Alien::update() {
     switch (getState()) {
