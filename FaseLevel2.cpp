@@ -36,6 +36,12 @@ void FaseLevel2::init() {
     objs.push_back(itemController);
 
     srand(time(NULL));
+
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 20, 2));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 15, 30));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 27, 90));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 18, 70));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 30, 130));
 }
 
 unsigned FaseLevel2::run(SpriteBuffer &screen) {
@@ -53,7 +59,6 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
         //lendo entrada
         system("stty raw");
         ent = getchar();
-//        getline(std::cin, ent);
         system("stty cooked");
         if (ent == "q") {
             system("stty cooked");
@@ -87,9 +92,9 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
         cont2++;
         if (cont2 >= 60) {
             int i = rand() % 3;
-            int j = rand() % 3;
+            int j = rand() % 10;
             if (jellyfish[i]->isActive()) {
-                itemController->createItem(jellyfish[i]->getPosL() + 5, jellyfish[i]->getPosC() + 2, 1, j);
+                itemController->createItem(jellyfish[i]->getPosL() + 5, jellyfish[i]->getPosC() + 2, j);
                 cont2 = 0;
             }
         }
@@ -99,7 +104,7 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
             spaceship->recebeItemLife();
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 1) {
-            spaceship->recebeItemNocivo(10);
+            spaceship->recebeItemNocivo(20);
             life->setText(std::string(spaceship->getLife() / 10, '#'));
         } else if (colisao == 2) {
             spaceship->recebeItemShot();

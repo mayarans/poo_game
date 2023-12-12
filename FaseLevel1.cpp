@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 void FaseLevel1::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 40, 1);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 30, 1);
     objs.push_back(spaceship);
 
     countEnemy = 0;
@@ -25,7 +25,7 @@ void FaseLevel1::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/40"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/30"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
@@ -33,6 +33,12 @@ void FaseLevel1::init() {
     objs.push_back(controller);
 
     srand(time(NULL));
+
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 20, 2));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 15, 30));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 27, 90));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 18, 70));
+    objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 30, 130));
 }
 
 unsigned FaseLevel1::run(SpriteBuffer &screen) {
@@ -49,7 +55,6 @@ unsigned FaseLevel1::run(SpriteBuffer &screen) {
         //lendo entrada
         system("stty raw");
         ent = getchar();
-//        getline(std::cin, ent);
         system("stty cooked");
         if (ent == "q") {
             system("stty cooked");

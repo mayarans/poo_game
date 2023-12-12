@@ -32,9 +32,6 @@ private:
      TextSprite *life, *shots;
      ShotController *controller;
      int countEnemy;
-//
-//	enum {RIDING, PRACING, END};
-
 };
 
 #endif // FASESTART_HPP

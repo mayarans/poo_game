@@ -35,8 +35,6 @@ private:
     ShotController *controller;
     ItemController *itemController;
     int countEnemy;
-//
-//	enum {RIDING, PRACING, END};
 
 };
 
