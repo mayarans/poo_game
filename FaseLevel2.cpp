@@ -1,23 +1,23 @@
-#include "../interfaces/FaseLevel2.hpp"
+#include "FaseLevel2.hpp"
 #include <ctime>
 #include <cstdlib>
 
 void FaseLevel2::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("../rsc/spaceship.img"), 42, 70), 40, 2);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("./rsc/spaceship.img"), 42, 70), 40, 2);
     objs.push_back(spaceship);
 
     countEnemy = 0;
     int pos = 0;
     for (int i = 10; i < 101; i += 10) {
         countEnemy += 1;
-        alien[pos] = new Alien(ObjetoDeJogo("Alien", Sprite("../rsc/alien.img"), 0, i));
+        alien[pos] = new Alien(ObjetoDeJogo("Alien", Sprite("./rsc/alien.img"), 0, i));
         objs.push_back(alien[pos++]);
     }
 
     pos = 0;
     for (int i = 60; i < 131; i += 10) {
         countEnemy += 1;
-        jellyfish[pos] = new Jellyfish(ObjetoDeJogo("Jellyfish", Sprite("../rsc/jellyfish.img"), 8, i), 2);
+        jellyfish[pos] = new Jellyfish(ObjetoDeJogo("Jellyfish", Sprite("./rsc/jellyfish.img"), 8, i), 2);
         objs.push_back(jellyfish[pos++]);
     }
 
@@ -29,10 +29,10 @@ void FaseLevel2::init() {
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
-    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("../rsc/shot.img"), 0, 0));
+    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("./rsc/shot.img"), 0, 0));
     objs.push_back(controller);
 
-    itemController = new ItemController(ObjetoDeJogo("ItemController", Sprite("../rsc/shot.img"), 0, 0));
+    itemController = new ItemController(ObjetoDeJogo("ItemController", Sprite("./rsc/shot.img"), 0, 0));
     objs.push_back(itemController);
 
     srand(time(NULL));
@@ -46,10 +46,10 @@ void FaseLevel2::init() {
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 18, 160));
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 25, 185));
 
-    enemyKill = new Sound("../sounds/kill.mp3");
-    shooting = new Sound("../sounds/shot.mp3");
-    catchItemSound = new Sound("../sounds/catchItem.mp3");
-    catchBombSound = new Sound("../sounds/catchItemBomb.mp3");
+    enemyKill = new Sound("./sounds/kill.mp3");
+    shooting = new Sound("./sounds/shot.mp3");
+    catchItemSound = new Sound("./sounds/catchItem.mp3");
+    catchBombSound = new Sound("./sounds/catchItemBomb.mp3");
 }
 
 unsigned FaseLevel2::run(SpriteBuffer &screen) {

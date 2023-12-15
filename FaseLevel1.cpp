@@ -1,23 +1,23 @@
-#include "../interfaces/FaseLevel2.hpp"
+#include "FaseLevel1.hpp"
 #include <ctime>
 #include <cstdlib>
 
-void FaseLevel2::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("../rsc/spaceship.img"), 42, 70), 40, 2);
+void FaseLevel1::init() {
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("./rsc/spaceship.img"), 42, 70), 30, 2);
     objs.push_back(spaceship);
 
     countEnemy = 0;
     int pos = 0;
-    for (int i = 10; i < 101; i += 10) {
+    for (int i = 0; i < 91; i+=10) {
         countEnemy += 1;
-        alien[pos] = new Alien(ObjetoDeJogo("Alien", Sprite("../rsc/alien.img"), 0, i));
+        alien[pos] = new Alien (ObjetoDeJogo("Alien", Sprite("./rsc/alien.img"), 0, i), 2);
         objs.push_back(alien[pos++]);
     }
 
     pos = 0;
-    for (int i = 60; i < 131; i += 10) {
+    for (int i = 40; i < 111; i+=10) {
         countEnemy += 1;
-        jellyfish[pos] = new Jellyfish(ObjetoDeJogo("Jellyfish", Sprite("../rsc/jellyfish.img"), 8, i), 2);
+        jellyfish[pos] = new Jellyfish (ObjetoDeJogo("Jellyfish", Sprite("./rsc/jellyfish.img"), 8, i));
         objs.push_back(jellyfish[pos++]);
     }
 
@@ -25,15 +25,12 @@ void FaseLevel2::init() {
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     life = dynamic_cast<TextSprite *> (tmp);
 
-    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/40"), 48, 140));
+    objs.push_back(new ObjetoDeJogo("Shots", TextSprite("0/30"), 48, 140));
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
-    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("../rsc/shot.img"), 0, 0));
+    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("./rsc/shot.img"), 0, 0));
     objs.push_back(controller);
-
-    itemController = new ItemController(ObjetoDeJogo("ItemController", Sprite("../rsc/shot.img"), 0, 0));
-    objs.push_back(itemController);
 
     srand(time(NULL));
 
@@ -46,13 +43,11 @@ void FaseLevel2::init() {
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 18, 160));
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 25, 185));
 
-    enemyKill = new Sound("../sounds/kill.mp3");
-    shooting = new Sound("../sounds/shot.mp3");
-    catchItemSound = new Sound("../sounds/catchItem.mp3");
-    catchBombSound = new Sound("../sounds/catchItemBomb.mp3");
+    enemyKill = new Sound("./sounds/kill.mp3");
+    shooting = new Sound("./sounds/shot.mp3");
 }
 
-unsigned FaseLevel2::run(SpriteBuffer &screen) {
+unsigned FaseLevel1::run(SpriteBuffer &screen) {
     std::string ent;
 
     //padrão
@@ -62,7 +57,6 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
 
     int cont = 0;
     int colisao;
-    int cont2 = 0;
     while (true) {
         //lendo entrada
         system("stty raw");
@@ -75,7 +69,7 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
             spaceship->moveLeft(3);
         } else if (ent == "d" && spaceship->getPosC() < 192) {
             spaceship->moveRight(3);
-        } else if (ent == "x" && spaceship->getQuantShots() < spaceship->getTotalShots()) {
+        } else if (ent == "x" && spaceship->getQuantShots() < spaceship->getTotalShots() ) {
             shooting->play();
             controller->createShot(spaceship->getPosL() - 2, spaceship->getPosC() + 5, spaceship->getVelShot(), 1);
             spaceship->incrementQuantShots();
@@ -83,12 +77,12 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
         }
 
         cont++;
-        if (cont >= 20) {
+        if (cont == 20) {
             int i = rand() % 4;
             if (alien[i]->isActive()) {
                 controller->createShot(alien[i]->getPosL() + 5, alien[i]->getPosC() + 2, 1, -1);
-                cont = 0;
             }
+            cont = 0;
         }
 
         colisao = controller->verificaColisao(objs);
@@ -96,32 +90,7 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
             countEnemy--;
             enemyKill->play();
         } else if (colisao == 0) {
-            life->setText(std::string(spaceship->getLife() / 10, '#'));
-        }
-
-        cont2++;
-        if (cont2 >= 60) {
-            int i = rand() % 3;
-            int j = rand() % 10;
-            if (jellyfish[i]->isActive()) {
-                itemController->createItem(jellyfish[i]->getPosL() + 5, jellyfish[i]->getPosC() + 2, j);
-                cont2 = 0;
-            }
-        }
-
-        colisao = itemController->verificaColisao(*spaceship);
-        if (colisao == 0) {
-            catchItemSound->play();
-            spaceship->recebeItemLife();
-            life->setText(std::string(spaceship->getLife() / 10, '#'));
-        } else if (colisao == 1) {
-            catchBombSound->play();
-            spaceship->recebeItemNocivo(20);
-            life->setText(std::string(spaceship->getLife() / 10, '#'));
-        } else if (colisao == 2) {
-            catchItemSound->play();
-            spaceship->recebeItemShot();
-            shots->setText(std::to_string(spaceship->getQuantShots()) + "/" + std::to_string(spaceship->getTotalShots()));
+            life->setText(std::string(spaceship->getLife()/10,'#'));
         }
 
         update();
@@ -131,12 +100,10 @@ unsigned FaseLevel2::run(SpriteBuffer &screen) {
 
         if (countEnemy == 0) {
             return Fase::LEVEL_COMPLETE;
-        } else if ((spaceship->getQuantShots() == spaceship->getTotalShots() && countEnemy > 0) ||
-                   (!spaceship->isAlive())) {
+        } else if ((spaceship->getQuantShots() == spaceship->getTotalShots() && countEnemy > 0) || (!spaceship->isAlive())) {
             return Fase::GAME_OVER;
         }
 
         show(screen);
     }
-
 }

@@ -1,13 +1,14 @@
-#include "../interfaces/GameWin.hpp"
+#include "GameOver.hpp"
 
-void GameWin::init()
+void GameOver::init()
 {
-    spaceship = new ObjetoDeJogo("SpaceshipWinner", SpriteAnimado("../rsc/spaceshipWinner.anm"), 55, 80);
+    spaceship = new ObjetoDeJogo("SpaceshipExplosion", SpriteAnimado("./rsc/explosion.anm"), 30, 30);
 	objs.push_back(spaceship);
-    alreadyWinSound = new Sound("../sounds/soundWinner.mp3");
+
+    spaceshipDeath = new Sound("./sounds/spaceshipDeath.mp3");
 }
 
-unsigned GameWin::run(SpriteBuffer &screen)
+unsigned GameOver::run(SpriteBuffer &screen)
 {
 	std::string ent;
 	
@@ -16,7 +17,7 @@ unsigned GameWin::run(SpriteBuffer &screen)
 	system("clear");
 	show(screen);
 
-    alreadyWinSound->play();
+    spaceshipDeath->play();
 	
 	for (int i = 0 ; i < 50 ; i++)
 	{
@@ -25,10 +26,6 @@ unsigned GameWin::run(SpriteBuffer &screen)
 		if (ent == "q")
 			return Fase::END_GAME;
 
-        spaceship->moveUp(1);
-        screen.clear();
-
-
         //padrão
         update();
         screen.clear();
@@ -36,7 +33,7 @@ unsigned GameWin::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
 	}
-	
+
 	return Fase::END_GAME; // não necessário
 }
 

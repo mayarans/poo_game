@@ -1,29 +1,27 @@
-#include "../interfaces/Enemy.hpp"
+#include "Alien.hpp"
 
-Enemy::Enemy(const ObjetoDeJogo &obj, int velocidade) : velocidade(velocidade), state(EnemyState::Idle), ObjetoDeJogo(obj) {}
+Alien::Alien(const ObjetoDeJogo &obj, int velocidade) : Enemy(obj, velocidade) {}
 
-void Enemy::update() {
-    switch (state) {
+void Alien::update() {
+    switch (getState()) {
         case EnemyState::Idle:
             moveTo(getPosL(), getPosC());
-            state = EnemyState::MovingLeft;
+            setState(EnemyState::MovingRight);
             break;
 
         case EnemyState::MovingLeft:
             moveLeft(getVelocidade());
             if (getPosC() == 0) {
-                state = EnemyState::MovingRight;
+                setState(EnemyState::MovingRight);
             }
             break;
 
         case EnemyState::MovingRight:
             moveRight(getVelocidade());
             if (getPosC() == 192) {
-                state = EnemyState::MovingLeft;
+                setState(EnemyState::MovingLeft);
             }
             break;
     }
 
 }
-
-

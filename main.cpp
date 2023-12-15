@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "interfaces/Game.hpp"
+#include "Game.hpp"
 
 
 int main()

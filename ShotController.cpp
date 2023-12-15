@@ -1,4 +1,4 @@
-#include "../interfaces/ShotController.hpp"
+#include "ShotController.hpp"
 
 ShotController::ShotController(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){
 }
@@ -22,9 +22,9 @@ void ShotController::update() {
 void ShotController::createShot(int posL, int posC, int velShot, int dir, int intensidade) {
     std::string sprite;
     if (dir == 1) {
-        sprite = "../rsc/shot.img";
+        sprite = "./rsc/shot.img";
     } else {
-        sprite = "../rsc/shotEnemy.img";
+        sprite = "./rsc/shotEnemy.img";
     }
     newShot = new Shot(ObjetoDeJogo("Shot", Sprite(sprite), posL, posC), velShot, dir, intensidade);
     newShot->ativarObj();

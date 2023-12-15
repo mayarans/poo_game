@@ -1,4 +1,4 @@
-#include "../interfaces/ItemController.hpp"
+#include "ItemController.hpp"
 
 ItemController::ItemController(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){
 }
@@ -25,15 +25,15 @@ void ItemController::createItem(int posL, int posC, int tipo) {
     }
     switch (tipo) {
         case 0:
-            newItem = new Item(ObjetoDeJogo("Item", Sprite("../rsc/life.img"), posL + 3, posC),
+            newItem = new Item(ObjetoDeJogo("Item", Sprite("./rsc/life.img"), posL + 3, posC),
                             "life");
             break;
         case 1:
-            newItem = new Item(ObjetoDeJogo("Item", Sprite("../rsc/bomb.img"), posL + 3, posC),
+            newItem = new Item(ObjetoDeJogo("Item", Sprite("./rsc/bomb.img"), posL + 3, posC),
                                "bomba");
             break;
         case 2:
-            newItem = new Item(ObjetoDeJogo("Item", Sprite("../rsc/itemShot.img"), posL + 3, posC),
+            newItem = new Item(ObjetoDeJogo("Item", Sprite("./rsc/itemShot.img"), posL + 3, posC),
                             "municao");
             break;
     }

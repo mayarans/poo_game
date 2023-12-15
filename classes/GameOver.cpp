@@ -1,11 +1,11 @@
-#include "interfaces/GameOver.hpp"
+#include "../interfaces/GameOver.hpp"
 
 void GameOver::init()
 {
-    spaceship = new ObjetoDeJogo("SpaceshipExplosion", SpriteAnimado("rsc_2/explosion.anm"), 30, 30);
+    spaceship = new ObjetoDeJogo("SpaceshipExplosion", SpriteAnimado("../rsc/explosion.anm"), 30, 30);
 	objs.push_back(spaceship);
 
-    spaceshipDeath = new Sound("./sounds/spaceshipDeath.mp3");
+    spaceshipDeath = new Sound("../sounds/spaceshipDeath.mp3");
 }
 
 unsigned GameOver::run(SpriteBuffer &screen)

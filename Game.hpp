@@ -9,8 +9,8 @@
 #include "FaseStart.hpp"
 #include "GameWin.hpp"
 #include "GameOver.hpp"
-#include "../ASCII_Engine/Sprite.hpp"
-#include "../ASCII_Engine/SpriteAnimado.hpp"
+#include "ASCII_Engine/Sprite.hpp"
+#include "ASCII_Engine/SpriteAnimado.hpp"
 
 class Game {
 public:
@@ -21,21 +21,21 @@ public:
         SpriteBuffer buffer(210, 50);
 
         int faseAtual = 0;
-        Menu menu("Menu", SpriteAnimado("../rsc/background.anm"));
-        Apresentacao apresentacao("Apresentacao", SpriteAnimado("../rsc/background.anm"));
-        FaseStart start("FaseStart", SpriteAnimado("../rsc/background.anm"));
-        FaseLevel1 fase1("Fase1", SpriteAnimado("../rsc/background.anm"));
-        FaseLevel2 fase2("Fase2", SpriteAnimado("../rsc/background.anm"));
-        FaseLevel3 fase3("Fase3", SpriteAnimado("../rsc/background.anm"));
-        GameWin gameWin("GameWin", SpriteAnimado("../rsc/backgroundWinner.anm"));
-        GameOver gameOver("GameOver", SpriteAnimado("../rsc/backgroundLoser.anm"));
+        Menu menu("Menu", SpriteAnimado("./rsc/background.anm"));
+        Apresentacao apresentacao("Apresentacao", SpriteAnimado("./rsc/background.anm"));
+        FaseStart start("FaseStart", SpriteAnimado("./rsc/background.anm"));
+        FaseLevel1 fase1("Fase1", SpriteAnimado("./rsc/background.anm"));
+        FaseLevel2 fase2("Fase2", SpriteAnimado("./rsc/background.anm"));
+        FaseLevel3 fase3("Fase3", SpriteAnimado("./rsc/background.anm"));
+        GameWin gameWin("GameWin", SpriteAnimado("./rsc/backgroundWinner.anm"));
+        GameOver gameOver("GameOver", SpriteAnimado("./rsc/backgroundLoser.anm"));
 
         std::vector<Fase *> fases;
         fases.push_back(&menu);
         fases.push_back(&apresentacao);
-       fases.push_back(&start);
+        fases.push_back(&start);
         fases.push_back(&fase1);
-       fases.push_back(&fase2);
+        fases.push_back(&fase2);
         fases.push_back(&fase3);
         fases.push_back(&gameWin);
 

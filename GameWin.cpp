@@ -1,10 +1,10 @@
-#include "../interfaces/GameWin.hpp"
+#include "GameWin.hpp"
 
 void GameWin::init()
 {
-    spaceship = new ObjetoDeJogo("SpaceshipWinner", SpriteAnimado("../rsc/spaceshipWinner.anm"), 55, 80);
+    spaceship = new ObjetoDeJogo("SpaceshipWinner", SpriteAnimado("./rsc/spaceshipWinner.anm"), 55, 80);
 	objs.push_back(spaceship);
-    alreadyWinSound = new Sound("../sounds/soundWinner.mp3");
+    alreadyWinSound = new Sound("./sounds/soundWinner.mp3");
 }
 
 unsigned GameWin::run(SpriteBuffer &screen)

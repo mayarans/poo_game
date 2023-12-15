@@ -1,4 +1,4 @@
-#include "../interfaces/Shot.hpp"
+#include "Shot.hpp"
 
 Shot::Shot(const ObjetoDeJogo &obj, int velShot, int dir, int intensidade) : velShot(velShot), dir(dir), intensidade(intensidade), ObjetoDeJogo(obj) {}
 

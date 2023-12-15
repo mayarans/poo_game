@@ -1,4 +1,4 @@
-#include "../interfaces/Enemy.hpp"
+#include "Enemy.hpp"
 
 Enemy::Enemy(const ObjetoDeJogo &obj, int velocidade) : velocidade(velocidade), state(EnemyState::Idle), ObjetoDeJogo(obj) {}
 

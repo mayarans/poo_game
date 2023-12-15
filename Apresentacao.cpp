@@ -1,15 +1,15 @@
-#include "../interfaces/Apresentacao.hpp"
-#include "../ASCII_Engine/Sound.hpp"
+#include "Apresentacao.hpp"
+#include "ASCII_Engine/Sound.hpp"
 
 void Apresentacao::init()
 {
-    carta = new ObjetoDeJogo("Carta", Sprite("../rsc/letter.img"), 13, 50);
+    carta = new ObjetoDeJogo("Carta", Sprite("./rsc/letter.img"), 13, 50);
     objs.push_back(carta);
 
     objs.push_back(new ObjetoDeJogo("Carregamento", TextSprite("#"), 49, 70));
     SpriteBase *tmp = const_cast<SpriteBase *> (objs.back()->getSprite());
     carregamento = dynamic_cast<TextSprite *> (tmp);
-    som = new Sound("../sounds/presentation.mp3");
+    som = new Sound("./sounds/presentation.mp3");
 }
 
 unsigned Apresentacao::run(SpriteBuffer &screen) {

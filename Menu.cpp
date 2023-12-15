@@ -1,8 +1,8 @@
-#include "../interfaces/Menu.hpp"
+#include "Menu.hpp"
 
 void Menu::init() {
-    menu = new ObjetoDeJogo("Menu", Sprite("./rsc_2/menu.img"), 15, 65);
-    setinha = new ObjetoDeJogo("Setinha", Sprite("./rsc_2/arrow.img"), 20, 100);
+    menu = new ObjetoDeJogo("Menu", Sprite("./rsc/menu.img"), 15, 65);
+    setinha = new ObjetoDeJogo("Setinha", Sprite("./rsc/arrow.img"), 20, 100);
     objs.push_back(menu);
     objs.push_back(setinha);
 }

@@ -1,21 +1,21 @@
-#include "interfaces/FaseStart.hpp"
+#include "../interfaces/FaseStart.hpp"
 
 void FaseStart::init() {
-    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("rsc_2/spaceship.img"), 42, 70), 25, 2);
+    spaceship = new Spaceship(ObjetoDeJogo("Spaceship", Sprite("../rsc/spaceship.img"), 42, 70), 25, 2);
     objs.push_back(spaceship);
 
     countEnemy = 0;
     for (int i = 0; i < 81; i+=10) {
         countEnemy += 1;
         if (countEnemy % 2 == 0)
-            objs.push_back(new Alien (ObjetoDeJogo("Alien", Sprite("rsc_2/alien.img"), 0, i)));
+            objs.push_back(new Alien (ObjetoDeJogo("Alien", Sprite("../rsc/alien.img"), 0, i)));
         else
-            objs.push_back(new Alien (ObjetoDeJogo("Alien", Sprite("rsc_2/alien.img"), 0, i), 2));
+            objs.push_back(new Alien (ObjetoDeJogo("Alien", Sprite("../rsc/alien.img"), 0, i), 2));
     }
 
     for (int i = 80; i < 141; i+=10) {
         countEnemy += 1;
-        objs.push_back(new Jellyfish (ObjetoDeJogo("Jellyfish", Sprite("rsc_2/jellyfish.img"), 8, i)));
+        objs.push_back(new Jellyfish (ObjetoDeJogo("Jellyfish", Sprite("../rsc/jellyfish.img"), 8, i)));
     }
 
     objs.push_back(new ObjetoDeJogo("Life", TextSprite("##########"), 49, 140));
@@ -26,7 +26,7 @@ void FaseStart::init() {
     SpriteBase *tmp2 = const_cast<SpriteBase *> (objs.back()->getSprite());
     shots = dynamic_cast<TextSprite *> (tmp2);
 
-    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("rsc_2/shot.img"), 0, 0));
+    controller = new ShotController(ObjetoDeJogo("ShotController", Sprite("../rsc/shot.img"), 0, 0));
     objs.push_back(controller);
 
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 20, 2));
@@ -38,8 +38,8 @@ void FaseStart::init() {
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 18, 160));
     objs.push_back(new ObjetoDeJogo("Barreira", TextSprite("############"), 25, 185));
 
-    shooting = new Sound("./sounds/shot.mp3");
-    enemyKill = new Sound("./sounds/kill.mp3");
+    shooting = new Sound("../sounds/shot.mp3");
+    enemyKill = new Sound("../sounds/kill.mp3");
 }
 
 unsigned FaseStart::run(SpriteBuffer &screen) {

@@ -1,4 +1,4 @@
-#include "../interfaces/SpaceshipEnemy.hpp"
+#include "SpaceshipEnemy.hpp"
 
 SpaceshipEnemy::SpaceshipEnemy(const ObjetoDeJogo &obj) : Enemy(obj) {}
 

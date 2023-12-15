@@ -1,4 +1,4 @@
-#include "interfaces/Alien.hpp"
+#include "../interfaces/Alien.hpp"
 
 Alien::Alien(const ObjetoDeJogo &obj, int velocidade) : Enemy(obj, velocidade) {}
 
